@@ -1,0 +1,80 @@
+{
+  "config": {
+    "storeName": "Digo! Brindes",
+    "storeTagline": "Presentes que ficam na memória: com foto, nome ou a arte que você imaginar.",
+    "whatsapp": "5548991830606",
+    "whatsappDisplay": "(48) 99183-0606",
+    "instagram": "digo.brindes",
+    "whatsappMessage": "Olá! Tenho interesse na {nome} (cód. {codigo}).\n\nCategoria: {categoria}"
+  },
+  "categories": [
+    {
+      "name": "Cerâmica",
+      "icon": "<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M17 8h1a4 4 0 1 1 0 8h-1'/><path d='M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z'/><line x1='6' x2='6' y1='2' y2='4'/><line x1='10' x2='10' y1='2' y2='4'/><line x1='14' x2='14' y1='2' y2='4'/></svg>"
+    },
+    {
+      "name": "Mágicas",
+      "icon": "<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M9.94 14.06 3 21'/><path d='m15 3 1.4 3.6L20 8l-3.6 1.4L15 13l-1.4-3.6L10 8l3.6-1.4Z'/><path d='M5 3v4M3 5h4'/></svg>"
+    },
+    {
+      "name": "Chopp",
+      "icon": "<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M17 11h1a3 3 0 0 1 0 6h-1'/><path d='M5 8h12v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2Z'/><path d='M5 8a3 3 0 0 1 3-4 3 3 0 0 1 3-1 3 3 0 0 1 3 1 3 3 0 0 1 3 4'/><path d='M9 12v5M13 12v5'/></svg>"
+    },
+    {
+      "name": "Kits Presente",
+      "icon": "<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 12 20 22 4 22 4 12'/><rect x='2' y='7' width='20' height='5'/><line x1='12' y1='22' x2='12' y2='7'/><path d='M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z'/></svg>"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Caneca Personalizada com Foto",
+      "description": "Caneca de cerâmica branca 325 ml com a sua foto em alta definição. Pode ir ao micro-ondas e a estampa não desbota. Ótima para presentear família e amigos.",
+      "category": "Cerâmica",
+      "code": "CER-001",
+      "image": "",
+      "images": [],
+      "promo": false
+    },
+    {
+      "id": 2,
+      "name": "Caneca Personalizada com Nome",
+      "description": "Caneca de cerâmica 325 ml com nome e frase à sua escolha. Escolha a fonte e as cores e a gente monta a arte para você aprovar antes de produzir.",
+      "category": "Cerâmica",
+      "code": "CER-002",
+      "image": "",
+      "images": [],
+      "promo": false
+    },
+    {
+      "id": 3,
+      "name": "Caneca Mágica",
+      "description": "Caneca preta que revela a estampa quando recebe bebida quente. Surpreenda com uma foto ou mensagem escondida.",
+      "category": "Mágicas",
+      "code": "MAG-001",
+      "image": "",
+      "images": [],
+      "promo": true
+    },
+    {
+      "id": 4,
+      "name": "Caneca de Chopp Personalizada",
+      "description": "Caneca de chopp de vidro 340 ml com a arte que você quiser. Ideal para padrinhos, aniversários, confraternizações e lembranças de festa.",
+      "category": "Chopp",
+      "code": "CHO-001",
+      "image": "",
+      "images": [],
+      "promo": false
+    },
+    {
+      "id": 5,
+      "name": "Kit Caneca + Caixa Presente",
+      "description": "Caneca personalizada com uma caixa presente decorada e cartão com mensagem. Já chega pronta para entregar.",
+      "category": "Kits Presente",
+      "code": "KIT-001",
+      "image": "",
+      "images": [],
+      "promo": false
+    }
+  ]
+}

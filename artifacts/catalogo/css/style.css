@@ -33,7 +33,7 @@ html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
 body {
   font-family:var(--font-sans);
   background:var(--bg);
-  color:var(--text); line-height:1.6; min-height:100vh; overflow-x:hidden;
+  color:var(--text); line-height:1.6; min-height:100vh; min-height:100dvh; overflow-x:hidden;
 }
 
 img { max-width:100%; display:block; }
@@ -45,7 +45,7 @@ ul { list-style:none; } a { color:inherit; text-decoration:none; }
    SIDEBAR
    ========================================== */
 .sidebar {
-  position:fixed; top:0; left:0; width:var(--sidebar-width); height:100vh;
+  position:fixed; top:0; left:0; width:var(--sidebar-width); height:100vh; height:100dvh;
   background:var(--bg-alt);
   border-right:1px solid var(--border); z-index:300;
   display:flex; flex-direction:column; overflow-y:auto;
@@ -179,8 +179,8 @@ ul { list-style:none; } a { color:inherit; text-decoration:none; }
 /* ==========================================
    LAYOUT
    ========================================== */
-.layout { padding-top:var(--header-h); padding-left:var(--sidebar-width); min-height:100vh; display:flex; flex-direction:column; }
-.main-content { padding:32px 32px 56px; max-width:1400px; width:100%; flex:1; }
+.layout { padding-top:var(--header-h); padding-left:var(--sidebar-width); min-height:100vh; min-height:100dvh; display:flex; flex-direction:column; }
+.main-content { padding:32px 32px 56px; max-width:1400px; width:100%; flex:1; margin-inline:auto; }
 
 .filter-bar { display:flex; align-items:center; gap:10px; margin-bottom:22px; flex-wrap:wrap; }
 .filter-label { font-size:0.85rem; color:var(--text-muted); }
@@ -196,7 +196,7 @@ ul { list-style:none; } a { color:inherit; text-decoration:none; }
 /* ==========================================
    PRODUCTS GRID + CARD
    ========================================== */
-.products-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:22px; }
+.products-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(min(240px, 100%), 1fr)); gap:22px; }
 
 .product-card {
   position:relative; background:var(--white);
@@ -230,7 +230,7 @@ ul { list-style:none; } a { color:inherit; text-decoration:none; }
 .btn-interest {
   width:100%; padding:10px 14px;
   background:var(--ink); color:var(--white);
-  border-radius:var(--radius-sm); font-size:0.85rem; font-weight:600;
+  border-radius:var(--radius-sm); font-size:0.85rem; font-weight:600; white-space:nowrap; min-height:40px;
   display:flex; align-items:center; justify-content:center; gap:7px;
   transition:background var(--transition), color var(--transition);
 }
@@ -272,7 +272,7 @@ ul { list-style:none; } a { color:inherit; text-decoration:none; }
 .modal-backdrop.open { display:flex; }
 .modal {
   background:var(--white); border:1px solid var(--border);
-  border-radius:var(--radius); width:100%; max-width:880px; max-height:90vh; overflow-y:auto;
+  border-radius:var(--radius); width:100%; max-width:880px; max-height:90vh; max-height:90dvh; overflow-y:auto;
   position:relative; box-shadow:var(--shadow-lg);
   animation:slideUp .28s cubic-bezier(0.34,1.56,0.64,1) both;
 }
@@ -303,13 +303,43 @@ ul { list-style:none; } a { color:inherit; text-decoration:none; }
 
 /* ==========================================
    RESPONSIVO
+   Breakpoints: ≥1600 telas grandes · ≥2200 2K/4K · ≤1200 notebook
+   ≤900 tablet (sidebar vira gaveta) · ≤600 celular · ≤380 celular pequeno
+   altura ≤500 deitado = celular na horizontal
    ========================================== */
-@media (max-width:1024px) {
-  :root { --sidebar-width:230px; }
-  .main-content { padding:22px 20px 40px; }
-  .products-grid { grid-template-columns:repeat(auto-fill, minmax(210px, 1fr)); gap:16px; }
+
+/* Efeitos de hover só em dispositivos com mouse (evita "hover preso" no touch) */
+@media (hover:none) {
+  .product-card:hover { transform:none; box-shadow:var(--shadow-sm); border-color:var(--border); }
+  .product-card:hover .card-image-wrap img,
+  .product-card:hover .mug-art { transform:none; }
+  .hero__btn:hover, .btn-whatsapp:hover { transform:none; }
+  .product-card:active { transform:scale(.98); }
 }
-@media (max-width:768px) {
+
+/* Telas grandes */
+@media (min-width:1600px) {
+  .main-content { max-width:1560px; padding:40px 48px 64px; }
+  .products-grid { grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:26px; }
+  .header-center { max-width:640px; }
+}
+/* 2K / 4K */
+@media (min-width:2200px) {
+  html { font-size:112.5%; }
+  :root { --sidebar-width:300px; --header-h:96px; }
+  .main-content { max-width:1900px; }
+}
+
+/* Notebooks */
+@media (max-width:1200px) {
+  :root { --sidebar-width:230px; }
+  .main-content { padding:24px 22px 44px; }
+  .products-grid { grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:16px; }
+  .header-inner { padding:0 20px; }
+}
+
+/* Tablets: sidebar vira menu lateral (gaveta) */
+@media (max-width:900px) {
   :root { --header-h:68px; }
   .sidebar { transform:translateX(-100%); width:280px; box-shadow:var(--shadow-lg); }
   .sidebar.open { transform:translateX(0); }
@@ -321,8 +351,11 @@ ul { list-style:none; } a { color:inherit; text-decoration:none; }
   .product-count { display:none; }
   .layout { padding-left:0; }
   .main-content { padding:16px 16px 40px; }
-  .products-grid { grid-template-columns:repeat(auto-fill, minmax(160px, 1fr)); gap:12px; }
+  .products-grid { grid-template-columns:repeat(auto-fill, minmax(190px, 1fr)); gap:14px; }
   .hero { padding:28px 16px 28px; }
+  .sidebar { width:min(300px, 85vw); }
+  .menu-toggle, .sidebar-close { min-width:44px; min-height:44px; justify-content:center; align-items:center; }
+  .category-btn { min-height:44px; }
   .hero .brand-mark { width:64px; height:64px; }
   .modal-inner { grid-template-columns:1fr; }
   .modal-gallery { border-radius:var(--radius) var(--radius) 0 0; }
@@ -330,8 +363,17 @@ ul { list-style:none; } a { color:inherit; text-decoration:none; }
   .modal-info { padding:20px 20px 24px; gap:10px; }
   .modal-title { font-size:1.3rem; padding-right:0; }
 }
-@media (max-width:480px) {
-  .products-grid { grid-template-columns:repeat(2, 1fr); gap:10px; }
+
+/* Celulares */
+@media (max-width:600px) {
+  .products-grid { grid-template-columns:repeat(2, minmax(0, 1fr)); gap:10px; }
+  .card-badge { top:8px; left:8px; font-size:0.6rem; padding:2px 8px; }
+  .card-name { -webkit-line-clamp:3; }
+  .btn-interest svg:last-child { display:none; }
+  .search-input { font-size:16px; padding-right:38px; } /* 16px evita o zoom automático do iOS */
+  .modal-backdrop { padding:0; align-items:flex-end; }
+  .modal { max-height:92vh; max-height:92dvh; border-radius:var(--radius-lg) var(--radius-lg) 0 0; }
+  .filter-bar { margin-bottom:16px; }
   .card-body { padding:12px; gap:4px; }
   .card-name { font-size:0.88rem; }
   .card-desc { display:none; }
@@ -339,7 +381,37 @@ ul { list-style:none; } a { color:inherit; text-decoration:none; }
   .btn-interest { font-size:0.78rem; padding:8px 8px; }
   .header-inner { padding:0 12px; gap:10px; }
   .hero__btn { width:100%; justify-content:center; }
-  .modal { border-radius:var(--radius-sm); }
+}
+
+/* Celulares pequenos (iPhone SE, Androids compactos) */
+@media (max-width:380px) {
+  .main-content { padding:12px 10px 32px; }
+  .products-grid { gap:8px; }
+  .card-body { padding:10px; }
+  .card-footer { padding:8px 10px 10px; }
+  .btn-interest { font-size:0.74rem; gap:5px; padding:8px 4px; }
+  .btn-interest svg { width:14px; height:14px; }
+  .header .brand-mark { width:34px; height:34px; }
+  .hero { padding:22px 12px 24px; }
+  .hero__title { font-size:1.6rem; }
+}
+
+/* Celular na horizontal (pouca altura) */
+@media (max-height:500px) and (orientation:landscape) {
+  :root { --header-h:60px; }
+  .hero { padding:18px 16px 20px; }
+  .hero .brand-mark { display:none; }
+  .hero__title { margin-top:0; }
+  .hero__btn { width:auto; }
+  .modal-inner { grid-template-columns:1fr 1fr; }
+  .modal-main-img-wrap { min-height:0; }
+}
+
+/* Áreas seguras (notch / barra de gestos) */
+@supports (padding:env(safe-area-inset-left)) {
+  .header-inner { padding-left:max(12px, env(safe-area-inset-left)); padding-right:max(12px, env(safe-area-inset-right)); }
+  .site-footer { padding-bottom:max(22px, env(safe-area-inset-bottom)); }
+  .sidebar-contact { padding-bottom:max(22px, env(safe-area-inset-bottom)); }
 }
 
 .sidebar::-webkit-scrollbar { width:4px; }
